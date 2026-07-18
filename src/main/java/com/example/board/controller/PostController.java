@@ -33,6 +33,14 @@ public class PostController {
                 .toList();
     }
 
+    // 검색: GET /posts/search?keyword=공지
+    @GetMapping("/search")
+    public List<PostResponse> search(@RequestParam String keyword) {
+        return postService.search(keyword).stream()
+                .map(PostResponse::new)
+                .toList();
+    }
+
     // 단건 조회, @PathVariable => URL의 {id} 부분을 파라미터로 꺼냄
     @GetMapping("/{id}") ////GET /posts/1 요청 처리
     public PostResponse findOne(@PathVariable Long id) {

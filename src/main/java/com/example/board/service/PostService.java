@@ -24,6 +24,10 @@ public class PostService {
         return postRepository.findAll();
     }
 
+    public List<Post> search(String keyword) {
+        return postRepository.findByTitleContaining(keyword);
+    }
+
     public Post findOne(Long id) {
         return postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("게시글이 없습니다. id=" + id));
